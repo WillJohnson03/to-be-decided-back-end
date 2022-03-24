@@ -12,4 +12,6 @@ const boardGameSchema = new Schema({
 
 const BoardGame = mongoose.model('BoardGame', boardGameSchema)
 
-export { BoardGame } 
+export { 
+  BoardGame 
+} 
