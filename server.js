@@ -5,6 +5,8 @@ import cors from 'cors'
 
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as reviewRouter } from './routes/reviews.js'
+import { router as videoGamesRouter } from './routes/reviews.js'
 
 import('./config/database.js')
 
@@ -16,6 +18,8 @@ app.use(express.json())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
+app.use('/reviews', reviewRouter)
+app.use('/videoGames', videoGamesRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: "Not found" })
