@@ -7,7 +7,7 @@ const videogameSchema = new Schema({
   multiplayer: Boolean
 })
 
-const VideoGame = mongoose.deleteModel('Videogame', videogameSchema)
+const VideoGame = mongoose.model('Videogame', videogameSchema)
 
 export {
   VideoGame
