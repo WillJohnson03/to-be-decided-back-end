@@ -6,7 +6,7 @@ import cors from 'cors'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as reviewRouter } from './routes/reviews.js'
-import { router as videoGamesRouter } from './routes/reviews.js'
+import { router as videoGamesRouter } from './routes/video-games.js'
 import { router as boardgamesRouter } from './routes/board-games.js'
 import { router as moviesRouter } from './routes/movies.js'
 
