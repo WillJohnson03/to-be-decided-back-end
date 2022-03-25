@@ -8,6 +8,9 @@ const boardGameSchema = new Schema({
   max_players: Number,
   descriptions: String,
   image_url: String,
+  boardGameReviews: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' }
+}, {
+  timestamps: true
 })
 
 const BoardGame = mongoose.model('BoardGame', boardGameSchema)
