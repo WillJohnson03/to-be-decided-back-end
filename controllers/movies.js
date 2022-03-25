@@ -1,7 +1,15 @@
-import { Movie } from '../models/movie.js'
+import { BoardGame } from '../models/board-game.js'
+import axios from 'axios'
+import { response } from 'express'
+
+const baseUrl = 'https://api.themoviedb.org'
 
 function index(req, res) {
-  console.log('Self Destruct Is Imenent!!!')
+  axios.get(`${baseBoardGameUrl}https://api.themoviedb.org${process.env.API_KEY}`)
+  .then(response => {
+    console.log(response.data)
+    res.json(response.data)
+  })
 }
 
 export {
