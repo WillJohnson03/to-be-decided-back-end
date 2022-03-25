@@ -1,7 +1,15 @@
 import { BoardGame } from '../models/board-game.js'
+import axios from 'axios'
+import { response } from 'express'
+
+const baseBoardGameUrl = 'https://api.boardgameatlas.com/api'
 
 function index(req, res) {
-  console.log('This is not a test!!!')
+  axios.get(`${baseBoardGameUrl}/search?name=Catan&client_id=${process.env.CLIENT_ID}`)
+  .then(response => {
+    console.log(response.data)
+    res.json(response.data)
+  })
 }
 
 export {
