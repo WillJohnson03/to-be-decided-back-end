@@ -1,4 +1,4 @@
-import { VideoGame } from "../models/videogame.js"
+import { VideoGame } from "../models/video-game.js"
 import axios from "axios"
 import { response } from "express"
 

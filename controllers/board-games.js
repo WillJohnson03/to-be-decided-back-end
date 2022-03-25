@@ -7,7 +7,6 @@ const baseBoardGameUrl = 'https://api.boardgameatlas.com/api'
 function index(req, res) {
   axios.get(`${baseBoardGameUrl}/search?name=Catan&client_id=${process.env.BG_CLIENT_ID}`)
   .then(response => {
-    console.log(response.data)
     res.json(response.data)
   })
 }
