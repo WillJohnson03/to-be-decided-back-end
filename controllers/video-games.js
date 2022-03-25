@@ -1,7 +1,15 @@
 import { VideoGame } from "../models/videogame.js"
+import axios from "axios"
+import { response } from "express"
+
+const baseUrl = 'https://api.rawg.io/api'
 
 function index(req, res) {
-  console.log('sany tek')
+  axios.get(`${baseUrl}/games?key=${process.env.VG_KEY}`)
+  .then(response => {
+    console.log(response.data)
+    res.json(response.data)
+  })
 }
 
 export {
