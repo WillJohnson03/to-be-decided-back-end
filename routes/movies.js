@@ -5,7 +5,7 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.get('/', moviesCtrl.index)
+router.get('/:name', moviesCtrl.getMovie)
 
 /*---------- Protected Routes ----------*/
 
