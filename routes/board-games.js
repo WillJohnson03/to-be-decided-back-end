@@ -6,6 +6,7 @@ const router = Router()
 
 /*---------- Public Routes ----------*/
 router.get('/', boardGamesCtrl.index)
+router.get('/:name', boardGamesCtrl.getBoardGame)
 
 /*---------- Protected Routes ----------*/
 

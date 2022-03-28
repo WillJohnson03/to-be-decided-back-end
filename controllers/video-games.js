@@ -5,7 +5,7 @@ import { response } from "express"
 const baseUrl = 'https://api.rawg.io/api'
 
 function index(req, res) {
-  axios.get(`${baseUrl}/games?key=${process.env.VG_KEY}&search=${req.params.name}`)
+  axios.get(`${baseUrl}/games?key=${process.env.VG_KEY}&search=${req.params.query}`)
   .then(response => {
     console.log(response.data)
     res.json(response.data)
