@@ -9,4 +9,11 @@ function index(req, res) {
   })
 }
 
-export { index }
+function show (req, res){
+  console.log("sany tek");
+}
+
+export {
+  index,
+  show
+}
