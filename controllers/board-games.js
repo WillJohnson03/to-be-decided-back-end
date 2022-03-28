@@ -5,7 +5,7 @@ import { response } from 'express'
 const baseBoardGameUrl = 'https://api.boardgameatlas.com/api'
 
 function index(req, res) {
-  axios.get(`${baseBoardGameUrl}/search?name=Catan&client_id=${process.env.BG_CLIENT_ID}`)
+  axios.get(`${baseBoardGameUrl}/search?name=${req.params.name}&client_id=${process.env.BG_CLIENT_ID}&fuzzy_match=true`)
   .then(response => {
     res.json(response.data)
   })
