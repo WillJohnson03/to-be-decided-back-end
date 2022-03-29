@@ -2,7 +2,12 @@ import { Squad } from "../models/squad.js"
 import {v2 as cloudinary} from 'cloudinary'
 
 function index(req, res) {
-  console.log('yeetus')
+  Squad.find({})
+  .then(squads => res.json(squads))
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
 }
 
 function show(req, res) {
@@ -10,7 +15,6 @@ function show(req, res) {
 }
 
 function create(req, res) {
-  console.log(req.params)
   req.body.creator = req.user.profile
   if (req.body.photo === 'undefined' || !req.files['avatar']) {
     delete req.body['avatar']
