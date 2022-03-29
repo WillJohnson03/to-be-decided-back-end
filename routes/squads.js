@@ -1,13 +1,17 @@
 import { Router } from 'express'
-import * as squadsCtlr from '../controllers/squads.js'
+import * as squadsCtrl from '../controllers/squads.js'
 import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 
 const router = Router()
 
 /*---------- Public Routes ----------*/
-router.get('/', squadsCtlr.index)
+router.get('/', squadsCtrl.index)
+router.get('/:id', squadsCtrl.show)
 
 /*---------- Protected Routes ----------*/
+
+router.use(decodeUserFromToken)
+router.post('/', checkAuth, squadsCtrl.create)
 
 export {
   router
