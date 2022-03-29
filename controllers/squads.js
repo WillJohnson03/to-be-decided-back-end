@@ -10,8 +10,13 @@ function index(req, res) {
   })
 }
 
-function show(req, res) {
-  console.log('hello')
+function show (req, res){
+  Squad.findById(req.params.id)
+  .then(squad => res.json(squad))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err)
+  })
 }
 
 function create(req, res) {
