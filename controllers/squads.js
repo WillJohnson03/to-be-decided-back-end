@@ -22,7 +22,7 @@ function show (req, res){
 
 function create(req, res) {
   req.body.creator = req.user.profile
-  if (req.body.photo === 'undefined' || !req.files['avatar']) {
+  if (req.body.avatar === 'undefined' || !req.files['avatar']) {
     delete req.body['avatar']
     Squad.create(req.body)
     .then(squad => {
@@ -55,6 +55,41 @@ function create(req, res) {
   }
 }
 
+function update(req, res) {
+  if (req.body.avatar === 'undefined' || !req.files['avatar']) {
+    delete req.body['avatar']
+    Squad.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(squad => {
+      squad.populate('creator')
+      .then(populatedSquad => {
+        res.status(201).json(populatedSquad)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+  } else {
+    const imageFile = req.files.avatar.path
+    cloudinary.uploader.upload(imageFile, {tags: `${req.body.name}`})
+    .then(image => {
+      console.log(image)
+      req.body.avatar = image.url
+      Squad.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .then(squad => {
+        squad.populate('creator')
+        .then(populatedSquad => {
+          res.status(201).json(populatedSquad)
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+      })
+    })
+  }
+}
+
 function deleteSquad(req, res) {
   Squad.findByIdAndDelete(req.params.id)
   .then(squad => res.json(squad))
@@ -65,5 +100,6 @@ export {
   index,
   show,
   create,
-  deleteSquad as delete
+  deleteSquad as delete,
+  update
 }
