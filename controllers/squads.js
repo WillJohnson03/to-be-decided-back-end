@@ -3,6 +3,7 @@ import {v2 as cloudinary} from 'cloudinary'
 
 function index(req, res) {
   Squad.find({})
+  .populate('creator')
   .then(squads => res.json(squads))
   .catch(err => {
     console.log(err)
@@ -54,8 +55,15 @@ function create(req, res) {
   }
 }
 
+function deleteSquad(req, res) {
+  Squad.findByIdAndDelete(req.params.id)
+  .then(squad => res.json(squad))
+  .catch(err => res.json(err))
+}
+
 export {
   index,
   show,
-  create
+  create,
+  deleteSquad as delete
 }
