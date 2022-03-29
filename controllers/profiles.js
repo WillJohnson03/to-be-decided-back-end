@@ -10,7 +10,13 @@ function index(req, res) {
 }
 
 function show (req, res){
-  console.log("sany tek");
+  console.log(req.params.id);
+  Profile.findById(req.params.id)
+  .then(profile => res.json(profile))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err)
+  })
 }
 
 export {
