@@ -5,6 +5,7 @@ const videogameSchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: String,
   background_image: String,
+  released: String,
 }, {
   timestamps: true
 })
@@ -20,7 +21,7 @@ const movieSchema = new mongoose.Schema({
 
 const boardGameSchema = new mongoose.Schema({
   name: String,
-  descriptions: String,
+  description: String,
   image_url: String,
   min_players: Number,
   max_players: Number,
