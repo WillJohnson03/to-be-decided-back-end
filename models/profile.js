@@ -5,7 +5,7 @@ const profileSchema = new mongoose.Schema({
   name: String,
   boardGameColl: { type: mongoose.Schema.Types.ObjectId, ref: 'BoardGame' },
   movieColl: { type: mongoose.Schema.Types.ObjectId, ref: 'Movie' },
-  sqaudMates: { type: mongoose.Schema.Types.ObjectId, ref: 'Squad' },
+  squadMates: { type: mongoose.Schema.Types.ObjectId, ref: 'Squad' },
   videoGameColl: { type: mongoose.Schema.Types.ObjectId, ref: 'VideoGame' }
 },{
     timestamps: true,

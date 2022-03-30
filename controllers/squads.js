@@ -13,6 +13,7 @@ function index(req, res) {
 
 function show (req, res){
   Squad.findById(req.params.id)
+  .populate('creator')
   .then(squad => res.json(squad))
   .catch(err => {
     console.log(err);
@@ -22,13 +23,17 @@ function show (req, res){
 
 function create(req, res) {
   req.body.creator = req.user.profile
+  req.body.squadMembers = req.user.profile
   if (req.body.avatar === 'undefined' || !req.files['avatar']) {
     delete req.body['avatar']
     Squad.create(req.body)
     .then(squad => {
       squad.populate('creator')
-      .then(populatedSquad =>{
-        res.status(201).json(populatedSquad)
+      .then(populatedSquad => {
+        populatedSquad.populate('squadMembers')
+          .then(fullPopulatedSquad => {
+            res.status(201).json(fullPopulatedSquad)
+          })
       })
     })
     .catch(err => {
@@ -44,7 +49,10 @@ function create(req, res) {
       .then(squad => {
         squad.populate('creator')
         .then(populatedSquad => {
-          res.status(201).json(populatedSquad)
+          populatedSquad.populate('squadMembers')
+            .then(fullPopulatedSquad => {
+              res.status(201).json(fullPopulatedSquad)
+            })
         })
       })
       .catch(err => {
@@ -79,7 +87,10 @@ function update(req, res) {
       .then(squad => {
         squad.populate('creator')
         .then(populatedSquad => {
-          res.status(201).json(populatedSquad)
+          populatedSquad.populate('squadMembers')
+            .then(fullPopulatedSquad => {
+              res.status(201).json(fullPopulatedSquad)
+            })
         })
       })
       .catch(err => {
@@ -96,10 +107,14 @@ function deleteSquad(req, res) {
   .catch(err => res.json(err))
 }
 
+function addUser(req, res) {
+  
+}
 export {
   index,
   show,
   create,
   deleteSquad as delete,
-  update
+  update,
+  addUser
 }
