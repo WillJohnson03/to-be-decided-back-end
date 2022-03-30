@@ -13,6 +13,7 @@ function index(req, res) {
 
 function show (req, res){
   Squad.findById(req.params.id)
+  .populate('creator')
   .then(squad => res.json(squad))
   .catch(err => {
     console.log(err);
