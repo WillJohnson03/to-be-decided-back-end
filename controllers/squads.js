@@ -13,7 +13,7 @@ function index(req, res) {
 
 function show (req, res){
   Squad.findById(req.params.id)
-  .populate('creator')
+  .populate(['creator', 'squadMembers'])
   .then(squad => res.json(squad))
   .catch(err => {
     console.log(err);
@@ -108,8 +108,21 @@ function deleteSquad(req, res) {
 }
 
 function addUser(req, res) {
-  
+
+  Squad.findById(req.params.id)
+  .then(squad => {
+  squad.squadMembers.push(req.params.mID)
+  squad.save()
+  .then(updatedSquad => {
+    res.json(updatedSquad)
+  })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
 }
+
 export {
   index,
   show,
