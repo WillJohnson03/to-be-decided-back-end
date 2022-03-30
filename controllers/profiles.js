@@ -1,4 +1,5 @@
 import { Profile } from '../models/profile.js'
+import { update } from './squads.js';
 
 function index(req, res) {
   Profile.find({})
@@ -19,7 +20,55 @@ function show (req, res){
   })
 }
 
+function addVideoGame(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.videoGame.push(req.body)
+    profile.save()
+    .then(updateProfile => {
+      res.json(updateProfile)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function addBoardGame(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.boardGame.push(req.body)
+    profile.save()
+    .then(updateProfile => {
+      res.json(updateProfile)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
+function addMovie(req, res) {
+  Profile.findById(req.user.profile)
+  .then(profile => {
+    profile.movie.push(req.body)
+    profile.save()
+    .then(updateProfile => {
+      res.json(updateProfile)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+}
+
 export {
   index,
-  show
+  show,
+  addVideoGame,
+  addBoardGame,
+  addMovie
 }

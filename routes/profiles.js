@@ -11,4 +11,8 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth, profilesCtrl.show)
 
+router.post('/addVideoGame', checkAuth, profilesCtrl.addVideoGame)
+router.post('/addBoardGame', checkAuth, profilesCtrl.addBoardGame)
+router.post('/addMovie', checkAuth, profilesCtrl.addMovie)
+
 export { router }

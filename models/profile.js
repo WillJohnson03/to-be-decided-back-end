@@ -1,16 +1,48 @@
 import mongoose from 'mongoose'
 
-const profileSchema = new mongoose.Schema({
-  email: {type: String, required: true, lowercase: true, unique: true},
+
+const videogameSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  slug: String,
+  background_image: String,
+}, {
+  timestamps: true
+})
+
+const movieSchema = new mongoose.Schema({
+  title: String,
+  poster_path: String,
+  overview: String,
+  release_date: String,
+}, {
+  timestamps: true
+})
+
+const boardGameSchema = new mongoose.Schema({
   name: String,
-  boardGameColl: { type: mongoose.Schema.Types.ObjectId, ref: 'BoardGame' },
-  movieColl: { type: mongoose.Schema.Types.ObjectId, ref: 'Movie' },
-  squadMates: { type: mongoose.Schema.Types.ObjectId, ref: 'Squad' },
-  videoGameColl: { type: mongoose.Schema.Types.ObjectId, ref: 'VideoGame' }
-},{
-    timestamps: true,
+  descriptions: String,
+  image_url: String,
+  min_players: Number,
+  max_players: Number,
+  min_playtime: Number,
+  max_playtime: Number,
+  rules_url: String,
+}, {
+  timestamps: true
+})
+
+const profileSchema = new mongoose.Schema({
+  email: { type: String, required: true, lowercase: true, unique: true },
+  name: String,
+  videoGame: [videogameSchema],
+  movie: [movieSchema],
+  boardGame: [boardGameSchema]
+}, {
+  timestamps: true,
 })
 
 const Profile = mongoose.model('Profile', profileSchema)
 
-export {Profile}
+export {
+  Profile,
+}
