@@ -12,4 +12,6 @@ router.post('/login', authCtrl.login)
 router.use(decodeUserFromToken)
 router.post('/changePassword', checkAuth, authCtrl.changePassword)
 
-export { router }
+export {
+  router
+}
