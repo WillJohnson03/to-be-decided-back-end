@@ -28,6 +28,7 @@ const boardGameSchema = new mongoose.Schema({
   min_playtime: Number,
   max_playtime: Number,
   rules_url: String,
+  year_published: String,
 }, {
   timestamps: true
 })
