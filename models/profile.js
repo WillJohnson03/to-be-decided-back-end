@@ -35,6 +35,7 @@ const boardGameSchema = new mongoose.Schema({
 const profileSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
   name: String,
+  photo: {type: String},
   videoGame: [videogameSchema],
   movie: [movieSchema],
   boardGame: [boardGameSchema]
