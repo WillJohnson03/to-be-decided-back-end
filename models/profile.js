@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const videogameSchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: String,
@@ -36,7 +35,7 @@ const boardGameSchema = new mongoose.Schema({
 const profileSchema = new mongoose.Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
   name: String,
-  photo: {type: String},
+  photo: { type: String },
   videoGame: [videogameSchema],
   movie: [movieSchema],
   boardGame: [boardGameSchema]
@@ -47,5 +46,5 @@ const profileSchema = new mongoose.Schema({
 const Profile = mongoose.model('Profile', profileSchema)
 
 export {
-  Profile,
+  Profile
 }
