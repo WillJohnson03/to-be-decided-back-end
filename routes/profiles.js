@@ -9,6 +9,7 @@ router.get('/', profilesCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+
 router.get('/:id', checkAuth, profilesCtrl.show)
 router.put('/:id', checkAuth, profilesCtrl.update)
 
@@ -16,5 +17,6 @@ router.post('/addVideoGame', checkAuth, profilesCtrl.addVideoGame)
 router.post('/addBoardGame', checkAuth, profilesCtrl.addBoardGame)
 router.post('/addMovie', checkAuth, profilesCtrl.addMovie)
 
-export { router }
-
+export {
+  router
+}
