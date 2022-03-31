@@ -5,10 +5,10 @@ import { decodeUserFromToken, checkAuth } from '../middleware/auth.js'
 const router = Router()
 
 /*---------- Public Routes ----------*/
+router.get('/', profilesCtrl.index)
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth, profilesCtrl.show)
 router.put('/:id', checkAuth, profilesCtrl.update)
 
@@ -17,3 +17,4 @@ router.post('/addBoardGame', checkAuth, profilesCtrl.addBoardGame)
 router.post('/addMovie', checkAuth, profilesCtrl.addMovie)
 
 export { router }
+
